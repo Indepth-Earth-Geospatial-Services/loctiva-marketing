@@ -1,4 +1,4 @@
-import { Reveal } from '@/components/features/landing-page/components/ui/Reveal';
+import { Reveal } from '@/components/ui/Reveal';
 
 interface SectionHeadingProps {
   title: string;
