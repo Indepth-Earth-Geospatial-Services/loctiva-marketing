@@ -1,13 +1,13 @@
-import { Navbar } from '@/components/features/landing-page/components/layout/Navbar';
-import { Hero } from '@/components/features/landing-page/components/sections/hero';
-import { Features } from '@/components/features/landing-page/components/sections/features';
-import { Delivers } from '@/components/features/landing-page/components/sections/delivers';
-import { Dashboard } from '@/components/features/landing-page/components/sections/dashboard';
-import { Platform } from '@/components/features/landing-page/components/sections/platform';
-import { Splits } from '@/components/features/landing-page/components/sections/splits';
-import { Impact } from '@/components/features/landing-page/components/sections/impact';
-import { Trust } from '@/components/features/landing-page/components/sections/trust';
-import { Footer } from '@/components/features/landing-page/components/layout/Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Hero } from '@/components/sections/hero';
+import { Features } from '@/components/sections/features';
+import { Delivers } from '@/components/sections/delivers';
+import { Dashboard } from '@/components/pages/dashboard';
+import { Platform } from '@/components/sections/platform';
+import { Splits } from '@/components/sections/splits';
+import { Impact } from '@/components/sections/impact';
+import { Trust } from '@/components/sections/trust';
+import { Footer } from '@/components/layout/Footer';
 
 /**
  * Landing page — full conversion of the original static site into

@@ -1,5 +1,5 @@
-import { Button } from '@/components/features/landing-page/components/ui/Button';
-import { Reveal } from '@/components/features/landing-page/components/ui/Reveal';
+import { Button } from '@/components/ui/Button';
+import { Reveal } from '@/components/ui/Reveal';
 import { HeroDevice } from './HeroDevice';
 import { PartnerStrip } from './PartnerStrip';
 import { heroContent } from './hero.data';
