@@ -1,5 +1,5 @@
-import { Split } from "./Split";
-import { splits } from "./splits.data";
+import { Split } from './Split';
+import { splits } from './splits.data';
 
 /**
  * Renders the three text-and-image split sections (Multi-layer map,

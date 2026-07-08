@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Reveal } from '@/components/features/landing-page/components/ui/Reveal';
+import { Reveal } from '@/components/ui/Reveal';
 
 /**
  * Full-width dashboard screenshot — port of `.dashboard`. Rounded corners on
