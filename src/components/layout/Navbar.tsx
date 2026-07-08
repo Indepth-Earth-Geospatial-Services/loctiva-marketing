@@ -39,7 +39,7 @@ export function Navbar() {
             'flex-1 justify-center gap-11 font-geist text-base text-white',
             'flex', // desktop
             'max-[860px]:absolute max-[860px]:inset-x-0 max-[860px]:top-24 max-[860px]:flex-col max-[860px]:items-center max-[860px]:gap-5 max-[860px]:border-t max-[860px]:border-[#1c1c1c] max-[860px]:bg-panel max-[860px]:p-6',
-            open ? 'max-[860px]:flex' : 'max-[860px]:hidden'
+            open ? 'max-[860px]:flex' : 'max-[860px]:hidden',
           )}
         >
           {navLinks.map((link) => (

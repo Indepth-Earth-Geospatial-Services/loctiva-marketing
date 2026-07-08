@@ -1,7 +1,10 @@
 /** Footer link columns and brand copy. */
 
 export const footerBrand = {
-  tagline: ['Intelligence, Surveillance & Reconnaissance.', 'Always watching. Always ahead.'],
+  tagline: [
+    'Intelligence, Surveillance & Reconnaissance.',
+    'Always watching. Always ahead.',
+  ],
 } as const;
 
 export interface FooterColumn {
