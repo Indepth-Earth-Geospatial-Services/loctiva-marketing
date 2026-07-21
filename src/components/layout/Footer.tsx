@@ -17,11 +17,12 @@ export function Footer() {
           <div className='flex flex-col'>
             <div className='mb-4 flex items-center gap-2.5'>
               <Image
-                src='/landing/nav-logo.png'
-                alt=''
-                width={34}
-                height={34}
-                className='h-[34px] w-[34px]'
+                src='/android-chrome-192x192.png'
+                alt='Loctiva logo'
+                width={36}
+                height={36}
+                priority
+                className='h-9 w-9'
               />
               <b className='font-geist text-lg font-semibold text-t-bright'>
                 {siteConfig.name}
