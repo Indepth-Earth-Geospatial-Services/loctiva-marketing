@@ -3,6 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-bg: #ffffff;
+    --color-panel: #f7f7f8;
+    --color-border: #e5e5e7;
+    --color-blue: #007dfc;
+    --color-blue-light: #0561c9;
+    --color-amber: #eba414;
+    --color-btn: #141414;
+    --color-btn-hover: #2b2b2b;
+    --color-btn-fg: #ffffff;
+    --color-t-primary: #141414;
+    --color-t-bright: #000000;
+    --color-t-muted: #5a5a5a;
+    --color-t-dim: #8a8a8a;
+    --color-t-faint: #7a7a7a;
+    --color-grid-dot: #d4d4d4;
+    --color-card-grad-1: #f2f2f2;
+    --color-card-grad-2: #ffffff;
+    --logo-invert: 0;
+  }
+
   html {
     scroll-behavior: smooth;
   }

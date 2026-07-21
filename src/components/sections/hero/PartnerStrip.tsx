@@ -11,7 +11,7 @@ export function PartnerStrip() {
   return (
     <div className="absolute inset-x-0 bottom-[90px] max-[860px]:static max-[860px]:mt-14">
       <div className="wrap">
-        <p className="mb-6 font-inter text-sm font-medium text-white">{partnerContent.lead}</p>
+        <p className="mb-6 font-inter text-sm font-medium text-t-bright">{partnerContent.lead}</p>
 
         <div className="flex flex-wrap items-center justify-between gap-12">
           {/* Client logos */}
@@ -25,7 +25,7 @@ export function PartnerStrip() {
                   height={40}
                   className={cn(
                     "w-auto object-contain opacity-[.62] transition-opacity duration-200 hover:opacity-100",
-                    "[filter:grayscale(1)_brightness(0)_invert(1)]",
+                    "[filter:grayscale(1)_brightness(0)_invert(var(--logo-invert))]",
                     logo.small
                       ? "h-[27px] max-[860px]:h-[21px]"
                       : "h-10 max-[860px]:h-[30px]",
@@ -42,7 +42,7 @@ export function PartnerStrip() {
                 key={r.platform}
                 className="flex items-center gap-2 whitespace-nowrap font-mono text-xs tracking-[.06em] text-t-muted"
               >
-                <span className="text-[11px] tracking-[1.5px] text-[#eaeaea]">
+                <span className="text-[11px] tracking-[1.5px] text-t-faint">
                   &#9733;&#9733;&#9733;&#9733;&#9733;
                 </span>{" "}
                 {r.score} {r.platform}

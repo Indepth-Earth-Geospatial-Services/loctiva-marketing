@@ -21,7 +21,7 @@ export function Navbar() {
         {/* Brand */}
         <Link href='#' className='flex flex-none items-center gap-2.5'>
           <Image
-            src='/landing/nav-logo.png'
+            src='/android-chrome-192x192.png'
             alt='Loctiva logo'
             width={36}
             height={36}
@@ -33,12 +33,13 @@ export function Navbar() {
           </b>
         </Link>
 
-        {/* Nav links — centered on desktop, dropdown on mobile */}
+        {/* Nav links — centered on desktop (white, over the hero photo), dropdown
+            on mobile (dark text, since the dropdown panel itself is light). */}
         <div
           className={cn(
             'flex-1 justify-center gap-11 font-geist text-base text-white',
             'flex', // desktop
-            'max-[860px]:absolute max-[860px]:inset-x-0 max-[860px]:top-24 max-[860px]:flex-col max-[860px]:items-center max-[860px]:gap-5 max-[860px]:border-t max-[860px]:border-[#1c1c1c] max-[860px]:bg-panel max-[860px]:p-6',
+            'max-[860px]:absolute max-[860px]:inset-x-0 max-[860px]:top-24 max-[860px]:flex-col max-[860px]:items-center max-[860px]:gap-5 max-[860px]:border-t max-[860px]:border-border max-[860px]:bg-panel max-[860px]:p-6 max-[860px]:text-t-primary',
             open ? 'max-[860px]:flex' : 'max-[860px]:hidden',
           )}
         >
