@@ -62,7 +62,7 @@ export function Split({
               width={image.width}
               height={image.height}
               sizes='(max-width: 1100px) 100vw, 60vw'
-              className='h-auto w-full [filter:drop-shadow(0_30px_60px_rgba(0,0,0,.6))]'
+              className='h-auto w-full'
             />
           </Reveal>
         </div>
