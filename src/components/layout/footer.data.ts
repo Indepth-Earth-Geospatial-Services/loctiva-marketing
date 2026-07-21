@@ -1,7 +1,10 @@
 /** Footer link columns and brand copy. */
 
 export const footerBrand = {
-  tagline: ['Intelligence, Surveillance & Reconnaissance.', 'Always watching. Always ahead.'],
+  tagline: [
+    'Intelligence, Surveillance & Reconnaissance.',
+    'Always watching. Always ahead.',
+  ],
 } as const;
 
 export interface FooterColumn {
@@ -27,7 +30,7 @@ export const footerColumns: FooterColumn[] = [
     heading: 'Industries',
     links: [
       { label: 'Oil & Gas', href: '#' },
-      { label: 'Defence & Security', href: '#' },
+      { label: 'Defense & Security', href: '#' },
       { label: 'Power Sector', href: '#' },
       { label: 'Telecom Carriers', href: '#' },
       { label: 'Ports & Coastal Authorities', href: '#' },
