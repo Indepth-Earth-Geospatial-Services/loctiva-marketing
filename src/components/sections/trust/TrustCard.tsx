@@ -9,7 +9,7 @@ export function TrustCard({ art, title, body }: TrustCardItem) {
   return (
     <Reveal
       as='article'
-      className='flex flex-col overflow-hidden rounded-[18px] border border-border bg-[#0c0c0c]'
+      className='flex flex-col overflow-hidden rounded-[18px] border border-border bg-panel'
     >
       <div className='flex min-h-[300px] items-center justify-center px-[34px] pt-[34px] max-[860px]:min-h-0 max-[860px]:px-6 max-[860px]:pt-[26px]'>
         <Image
@@ -22,7 +22,7 @@ export function TrustCard({ art, title, body }: TrustCardItem) {
         />
       </div>
       <div className='px-[34px] pb-10 pt-6 max-[860px]:px-6 max-[860px]:pb-[30px] max-[860px]:pt-[18px]'>
-        <h3 className='mb-3.5 font-inter text-xl font-medium tracking-[-.25px] text-white'>
+        <h3 className='mb-3.5 font-inter text-xl font-medium tracking-[-.25px] text-t-bright'>
           {title}
         </h3>
         <p className='font-inter text-base leading-[1.5] text-t-muted'>

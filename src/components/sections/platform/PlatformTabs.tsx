@@ -85,7 +85,7 @@ export function PlatformTabs() {
       className={cn(
         'relative grid grid-cols-4 gap-8 pb-6',
         // continuous base divider behind the focus segment (desktop only)
-        "after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-[#212121] after:content-['']",
+        "after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:content-['']",
         'max-[1100px]:grid-cols-2 max-[1100px]:gap-12 max-[1100px]:pb-0 max-[1100px]:after:hidden',
         'max-[860px]:grid-cols-1 max-[860px]:gap-[18px]',
       )}
@@ -103,10 +103,10 @@ export function PlatformTabs() {
               // dim inactive columns on desktop only
               isDesktop && !isActive && 'opacity-40',
               // mobile: each column becomes a softly bordered card
-              'max-[860px]:rounded-[14px] max-[860px]:border max-[860px]:border-white/10 max-[860px]:bg-white/[.015] max-[860px]:px-[22px] max-[860px]:py-[26px]',
+              'max-[860px]:rounded-[14px] max-[860px]:border max-[860px]:border-border max-[860px]:bg-panel max-[860px]:px-[22px] max-[860px]:py-[26px]',
             )}
           >
-            <h3 className='mb-4 min-h-[52px] font-inter text-xl font-medium tracking-[-.25px] text-white max-[1100px]:min-h-0 max-[860px]:min-h-0'>
+            <h3 className='mb-4 min-h-[52px] font-inter text-xl font-medium tracking-[-.25px] text-t-bright max-[1100px]:min-h-0 max-[860px]:min-h-0'>
               <span className='mr-2.5 inline-flex items-center gap-1.5 align-[-6px]'>
                 {col.icons.map((icon, k) => (
                   <Image
@@ -121,7 +121,7 @@ export function PlatformTabs() {
               </span>
               {col.title}
               {col.beta ? (
-                <span className='ml-2 rounded border border-[#333] px-2 py-0.5 align-[2px] font-mono text-xs tracking-[.08em] text-t-muted'>
+                <span className='ml-2 rounded border border-border px-2 py-0.5 align-[2px] font-mono text-xs tracking-[.08em] text-t-muted'>
                   Beta
                 </span>
               ) : null}
@@ -130,7 +130,7 @@ export function PlatformTabs() {
             <p
               className={cn(
                 'mb-[22px] font-inter text-[15px] leading-[1.5] transition-colors duration-[450ms] ease-out max-[860px]:mb-[18px]',
-                isActive ? 'text-white' : 'text-t-dim',
+                isActive ? 'text-t-bright' : 'text-t-dim',
               )}
             >
               {col.body}
@@ -138,7 +138,7 @@ export function PlatformTabs() {
 
             <a
               href={col.linkHref}
-              className="mt-auto inline-flex items-center gap-2 self-start font-inter text-[15px] font-medium text-white after:text-blue-light after:content-['→'] max-[860px]:mt-0"
+              className="mt-auto inline-flex items-center gap-2 self-start font-inter text-[15px] font-medium text-t-bright after:text-blue-light after:content-['→'] max-[860px]:mt-0"
             >
               {col.linkLabel}
             </a>
@@ -151,10 +151,10 @@ export function PlatformTabs() {
       <div
         aria-hidden
         className={cn(
-          'absolute bottom-0 left-0 z-[2] h-px bg-white',
+          'absolute bottom-0 left-0 z-[2] h-px bg-t-bright',
           'transition-[transform,width] duration-[550ms] [transition-timing-function:cubic-bezier(.65,0,.35,1)]',
-          "before:absolute before:left-0 before:top-1/2 before:h-[7px] before:w-[7px] before:-translate-y-1/2 before:bg-white before:content-['']",
-          "after:absolute after:right-0 after:top-1/2 after:h-[7px] after:w-[7px] after:-translate-y-1/2 after:bg-white after:content-['']",
+          "before:absolute before:left-0 before:top-1/2 before:h-[7px] before:w-[7px] before:-translate-y-1/2 before:bg-t-bright before:content-['']",
+          "after:absolute after:right-0 after:top-1/2 after:h-[7px] after:w-[7px] after:-translate-y-1/2 after:bg-t-bright after:content-['']",
           'max-[1100px]:hidden',
         )}
         style={{

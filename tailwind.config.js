@@ -10,18 +10,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: '#0a0a0a',
-        panel: '#0c0c0c',
+        bg: 'var(--color-bg)',
+        panel: 'var(--color-panel)',
+        border: 'var(--color-border)',
         blue: {
-          DEFAULT: '#007dfc',
-          light: '#60a5fa',
+          DEFAULT: 'var(--color-blue)',
+          light: 'var(--color-blue-light)',
         },
-        btn: '#282828',
-        'btn-hover': '#343434',
-        't-primary': '#f5f5f5',
-        't-bright': '#ffffff',
-        't-muted': '#9a9a9a',
-        't-dim': '#707070',
+        amber: 'var(--color-amber)',
+        btn: 'var(--color-btn)',
+        'btn-hover': 'var(--color-btn-hover)',
+        'btn-fg': 'var(--color-btn-fg)',
+        't-primary': 'var(--color-t-primary)',
+        't-bright': 'var(--color-t-bright)',
+        't-muted': 'var(--color-t-muted)',
+        't-dim': 'var(--color-t-dim)',
+        't-faint': 'var(--color-t-faint)',
+        'grid-dot': 'var(--color-grid-dot)',
       },
       fontFamily: {
         satoshi: ['var(--font-satoshi)', 'sans-serif'],

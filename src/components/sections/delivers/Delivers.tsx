@@ -22,7 +22,7 @@ export function Delivers() {
             {deliversContent.title}
           </h2>
 
-          <p className='mb-8 max-w-[551px] font-geist text-lg leading-[1.55] text-white max-[860px]:text-base'>
+          <p className='mb-8 max-w-[551px] font-geist text-lg leading-[1.55] text-t-bright max-[860px]:text-base'>
             {deliversContent.body}
           </p>
 

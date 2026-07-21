@@ -1,47 +1,161 @@
-import { Button } from '@/components/ui/Button';
-import { Reveal } from '@/components/ui/Reveal';
-import { HeroDevice } from './HeroDevice';
-import { PartnerStrip } from './PartnerStrip';
-import { heroContent } from './hero.data';
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/cn';
+import { heroCtas, heroSlides } from './hero.data';
+
+const AUTOPLAY_MS = 6500;
 
 /**
- * Hero section: dotted backdrop, device image with parallax, headline + CTAs,
- * and the partner strip. Server component that composes the interactive parts
- * (HeroDevice, PartnerStrip) so only the parallax logic ships as client JS.
+ * Full-bleed hero carousel — each slide pairs a backdrop photo with the
+ * capability it evokes (port of the dji.enterprise.com hero pattern: dark
+ * gradient over a photo, pill CTAs, arrow + dot nav). Renders as its own
+ * dark cinematic band — a deliberate contrast against the light body below,
+ * not a site-wide dark mode.
  */
 export function Hero() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const go = useCallback((i: number) => {
+    setActive((i + heroSlides.length) % heroSlides.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const reduce = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (reduce) return;
+
+    const id = setInterval(() => go(active + 1), AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [active, paused, go]);
+
   return (
-    <section className='relative min-h-[1024px] overflow-hidden max-[860px]:min-h-0 max-[860px]:overflow-visible'>
-      {/* Dotted grid backdrop, faded toward the bottom */}
-      <div
-        aria-hidden
-        className='pointer-events-none absolute inset-0 opacity-60 [background-image:radial-gradient(circle,#4a4a4a_1.4px,transparent_1.6px)] [background-position:0_0] [background-size:51px_51px] [-webkit-mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)] [mask-image:linear-gradient(to_bottom,#000_55%,transparent_100%)]'
-      />
+    <section
+      className='relative min-h-[720px] overflow-hidden bg-[#05070d] max-[860px]:min-h-[840px]'
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Slide backgrounds — crossfaded photos under a dark legibility gradient */}
+      {heroSlides.map((slide, i) => (
+        <div
+          key={slide.image.src}
+          aria-hidden={i !== active}
+          className={cn(
+            'absolute inset-0 transition-opacity duration-700 ease-in-out',
+            i === active ? 'opacity-100' : 'opacity-0',
+          )}
+        >
+          <Image
+            src={slide.image.src}
+            alt={slide.image.alt}
+            fill
+            priority={i === 0}
+            sizes='100vw'
+            style={{ objectPosition: slide.imagePosition }}
+            className='object-cover'
+          />
+          <div className='absolute inset-0 bg-gradient-to-r from-[#05070d] via-[#05070d]/70 to-[#05070d]/10' />
+          <div className='absolute inset-0 bg-gradient-to-t from-[#05070d] via-transparent to-[#05070d]/30' />
+        </div>
+      ))}
 
-      <div className='relative mx-auto max-w-wrap px-6 max-[860px]:px-5'>
-        <div className='relative flex items-center gap-[4%] pb-10 pt-[118px] max-[860px]:gap-0 max-[860px]:pb-0 max-[860px]:pt-32'>
-          <HeroDevice />
+      {/* Top scrim — keeps the navbar legible over any slide, even a bright sky */}
+      <div className='absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-[#05070d]/80 to-transparent' />
 
-          <Reveal className='order-1 max-w-[760px] flex-1 basis-[52%] max-[860px]:max-w-none max-[860px]:basis-full'>
-            <h1 className='mb-[18px] font-satoshi text-[clamp(44px,3.4vw,58px)] font-normal leading-[1.34] tracking-[-.5px] text-t-primary max-[860px]:text-[34px] max-[860px]:leading-[1.18] max-[430px]:text-[45px]'>
-              {heroContent.headline[0]}
-              <br />
-              {heroContent.headline[1]}
-            </h1>
+      {/* Content */}
+      <div className='relative z-10 mx-auto flex min-h-[720px] max-w-wrap items-center px-6 max-[860px]:min-h-[840px] max-[860px]:px-5'>
+        <div key={active} className='reveal in max-w-[620px]'>
+          <span className='mb-4 block font-mono text-sm uppercase tracking-[.07em] text-blue-light'>
+            {heroSlides[active].eyebrow}
+          </span>
 
-            <p className='mb-9 max-w-[600px] font-mono text-[clamp(18px,1.25vw,21px)] leading-[1.3] text-t-primary max-[860px]:max-w-none max-[860px]:text-base'>
-              {heroContent.subhead}
-            </p>
+          <h1 className='mb-[18px] text-[clamp(38px,3.4vw,54px)] font-bold leading-[1.18] tracking-[-.5px] text-white max-[860px]:text-[32px]'>
+            {heroSlides[active].headline[0]}
+            <br />
+            {heroSlides[active].headline[1]}
+          </h1>
 
-            <div className='flex flex-wrap gap-4 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-3.5'>
-              <Button>{heroContent.primaryCta}</Button>
-              <Button variant='ghost'>{heroContent.secondaryCta}</Button>
-            </div>
-          </Reveal>
+          <p className='mb-9 max-w-[540px] font-inter text-lg leading-[1.5] text-white/80 max-[860px]:text-base'>
+            {heroSlides[active].subhead}
+          </p>
+
+          <div className='flex flex-wrap gap-4 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-3.5'>
+            <a
+              href='#'
+              className='inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 font-mono text-base font-medium text-[#05070d] transition-transform active:scale-[0.98]'
+            >
+              {heroCtas.primaryCta}
+            </a>
+            <a
+              href='#'
+              className='inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-3.5 font-mono text-base font-medium text-white transition-colors hover:bg-white/10 active:scale-[0.98]'
+            >
+              {heroCtas.secondaryCta}
+            </a>
+          </div>
         </div>
       </div>
 
-      <PartnerStrip />
+      {/* Arrow nav */}
+      <button
+        type='button'
+        aria-label='Previous slide'
+        onClick={() => go(active - 1)}
+        className='absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white max-[860px]:hidden'
+      >
+        <svg
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth={2}
+          className='h-5 w-5'
+        >
+          <path
+            d='M15 5l-7 7 7 7'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </button>
+      <button
+        type='button'
+        aria-label='Next slide'
+        onClick={() => go(active + 1)}
+        className='absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white max-[860px]:hidden'
+      >
+        <svg
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth={2}
+          className='h-5 w-5'
+        >
+          <path d='M9 5l7 7-7 7' strokeLinecap='round' strokeLinejoin='round' />
+        </svg>
+      </button>
+
+      {/* Dot nav */}
+      <div className='absolute inset-x-0 bottom-7 z-10 flex justify-center gap-2'>
+        {heroSlides.map((slide, i) => (
+          <button
+            key={slide.image.src}
+            type='button'
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === active}
+            onClick={() => go(i)}
+            className={cn(
+              'h-1.5 rounded-full transition-all duration-300',
+              i === active
+                ? 'w-7 bg-white'
+                : 'w-1.5 bg-white/40 hover:bg-white/70',
+            )}
+          />
+        ))}
+      </div>
     </section>
   );
 }

@@ -16,9 +16,9 @@ export function Trust() {
     >
       <div className='wrap'>
         {/* Top banner */}
-        <Reveal className='mb-6 grid grid-cols-[480px_1fr] items-center gap-10 rounded-[18px] border border-border bg-[#0c0c0c] p-12 max-[1100px]:grid-cols-1 max-[1100px]:gap-7 max-[860px]:gap-6 max-[860px]:p-7'>
+        <Reveal className='mb-6 grid grid-cols-[480px_1fr] items-center gap-10 rounded-[18px] border border-border bg-panel p-12 max-[1100px]:grid-cols-1 max-[1100px]:gap-7 max-[860px]:gap-6 max-[860px]:p-7'>
           <div>
-            <h3 className='mb-4 font-inter text-xl font-medium tracking-[-.25px] text-white max-[860px]:text-[19px]'>
+            <h3 className='mb-4 font-inter text-xl font-medium tracking-[-.25px] text-t-bright max-[860px]:text-[19px]'>
               {trustBanner.title}
             </h3>
             <p className='font-inter text-base leading-[1.5] text-t-muted'>
