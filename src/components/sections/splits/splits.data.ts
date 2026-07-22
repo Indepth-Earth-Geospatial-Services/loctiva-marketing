@@ -18,8 +18,8 @@ export const splits: SplitItem[] = [
     image: {
       src: '/landing/map.png',
       alt: 'Geospatial map interface',
-      width: 2102,
-      height: 1702,
+      width: 1393,
+      height: 1129,
     },
     lead: true,
   },
@@ -30,8 +30,8 @@ export const splits: SplitItem[] = [
     image: {
       src: '/landing/chart-incidents.png',
       alt: 'Threat detection charts',
-      width: 2046,
-      height: 1989,
+      width: 1299,
+      height: 1211,
     },
   },
   {
@@ -41,8 +41,8 @@ export const splits: SplitItem[] = [
     image: {
       src: '/landing/chart-analysis.png',
       alt: 'Entry and exit activity analysis',
-      width: 1908,
-      height: 1604,
+      width: 1370,
+      height: 1148,
     },
   },
 ];
