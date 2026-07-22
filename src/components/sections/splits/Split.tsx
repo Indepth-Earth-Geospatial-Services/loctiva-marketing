@@ -7,12 +7,24 @@ import type { SplitItem } from './splits.data';
 interface SplitProps extends SplitItem {
   /** Media on the left, text on the right (port of `.split.rev`). */
   reversed?: boolean;
+  /** Position in the stack — controls the sticky offset and stacking order. */
+  index: number;
 }
 
+/** Vertical sliver (px) of each card left peeking above the next one that pins over it. */
+const STACK_PEEK = 24;
+
 /**
- * Reusable text + image section — port of `.split`. Two columns on desktop
- * (391px text / fluid media), single column on tablet and below. The `lead`
- * flag adds the extra top padding of the first split; `reversed` swaps sides.
+ * Reusable text + image section — port of `.split`. Two flex columns on
+ * desktop (391px text / media capped at 480px), stacked on tablet and below.
+ * The `lead` flag adds the extra top padding of the first split; `reversed`
+ * swaps sides via the `order` utility on each child.
+ *
+ * Cards pin via `position: sticky` with an increasing `top` offset per
+ * `index`, so each later card slides up and covers the one before it,
+ * leaving a `STACK_PEEK`-tall strip visible — then releases to normal
+ * scroll once its own flow height runs out. Disabled below 860px, where
+ * the sections just stack normally.
  */
 export function Split({
   eyebrow,
@@ -21,24 +33,33 @@ export function Split({
   image,
   lead,
   reversed,
+  index,
 }: SplitProps) {
   return (
     <section
       className={cn(
+        'sticky min-h-screen flex items-center bg-bg',
+        'max-[860px]:static max-[860px]:min-h-0',
         'pt-[85px] max-[1100px]:pt-[90px] max-[860px]:pt-[72px]',
         lead && 'pt-[145px] max-[1100px]:pt-[110px] max-[860px]:pt-20',
       )}
+      style={{ top: index * STACK_PEEK, zIndex: index + 1 }}
     >
-      <div className='wrap'>
+      <div className='wrap w-full'>
         <div
           className={cn(
-            'grid grid-cols-[391px_1fr] items-center gap-20',
-            'max-[1100px]:grid-cols-1 max-[1100px]:gap-10',
+            'flex justify-between items-center gap-20',
+            'max-[1100px]:flex-col max-[1100px]:justify-start max-[1100px]:gap-10',
             'max-[860px]:gap-7',
-            reversed && 'grid-cols-[1fr_391px] max-[1100px]:grid-cols-1',
           )}
         >
-          <Reveal className={cn(reversed && 'order-2 max-[1100px]:order-none')}>
+          <Reveal
+            className={cn(
+              'w-[391px] flex-none',
+              'max-[1100px]:w-full',
+              reversed && 'order-2 max-[1100px]:order-none',
+            )}
+          >
             <Eyebrow variant='blue' className='mb-[26px]'>
               {eyebrow}
             </Eyebrow>
@@ -55,13 +76,19 @@ export function Split({
             </p>
           </Reveal>
 
-          <Reveal className={cn(reversed && 'order-1 max-[1100px]:order-none')}>
+          <Reveal
+            className={cn(
+              'min-w-0 max-w-[480px] flex-1',
+              'max-[1100px]:w-full max-[1100px]:max-w-none',
+              reversed && 'order-1 max-[1100px]:order-none',
+            )}
+          >
             <Image
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              sizes='(max-width: 1100px) 100vw, 60vw'
+              sizes='(max-width: 1100px) 100vw, 580px'
               className='h-auto w-full'
             />
           </Reveal>
