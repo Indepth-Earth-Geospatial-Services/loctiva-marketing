@@ -2,7 +2,7 @@
 export const deliversContent = {
   eyebrow: "What the System Delivers",
   title: "One Platform. Complete Operational Awareness.",
-  body: "AI accelerates your workflow. Customer intelligence keeps you on track. Dovetail pinpoints the work that drives usage and boosts revenue, empowering your team to build with confidence.",
+  body: "AI turns live drone feeds and geospatial data into real-time operational intelligence. From threat detection to asset tracking, Loctiva gives every team the same unified picture — so nothing gets missed and every response starts seconds sooner.",
   primaryCta: "Get Started",
   secondaryCta: "Request a Demo",
 } as const;

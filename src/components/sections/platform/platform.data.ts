@@ -18,7 +18,7 @@ export const platformColumns: PlatformColumn[] = [
     icons: ["/landing/icons/ic-incidents.png"],
     title: "Incidents & Threats Detection",
     body: "Proactively identify, track, and resolve asset behavior, environmental conditions & operational risks through automated incident creation, rule-based alerts, and intelligent escalation workflows.",
-    linkLabel: "Discover AI Chat and search",
+    linkLabel: "Discover Incidents & Threats",
     linkHref: "#",
   },
   {
@@ -33,7 +33,7 @@ export const platformColumns: PlatformColumn[] = [
     title: "Geospatial Map",
     beta: true,
     body: "Visualize assets, routes and live location tracking with satellite imagery, geofences, and playback to gain situational awareness across operational environments.",
-    linkLabel: "Discover AI Dashboards",
+    linkLabel: "Discover Geospatial Mapping",
     linkHref: "#",
   },
   {
@@ -41,7 +41,7 @@ export const platformColumns: PlatformColumn[] = [
     title: "Live Feed",
     beta: true,
     body: "This provides time-stamped visibility into asset activity, events, and alerts, enabling users to monitor operations, respond to incidents, and maintain continuous situational awareness.",
-    linkLabel: "Discover AI Docs",
+    linkLabel: "Discover Live Feed",
     linkHref: "#",
   },
 ];

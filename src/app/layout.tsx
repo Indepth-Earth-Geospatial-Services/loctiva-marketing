@@ -19,10 +19,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.socialDescription,
-    images: [{ url: siteConfig.ogImage }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.socialDescription,
   },

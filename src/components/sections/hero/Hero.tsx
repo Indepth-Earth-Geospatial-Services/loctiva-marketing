@@ -35,9 +35,17 @@ export function Hero() {
 
   return (
     <section
-      className='relative min-h-[720px] overflow-hidden bg-[#05070d] max-[860px]:min-h-[840px]'
+      className='relative min-h-dvh overflow-hidden bg-[#05070d]'
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => {
+        // Only resume autoplay once focus actually leaves the whole carousel
+        // (not just moving between two of its own buttons).
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
     >
       {/* Slide backgrounds — crossfaded photos under a dark legibility gradient */}
       {heroSlides.map((slide, i) => (
@@ -66,8 +74,13 @@ export function Hero() {
       {/* Top scrim — keeps the navbar legible over any slide, even a bright sky */}
       <div className='absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-[#05070d]/80 to-transparent' />
 
+      {/* Announces slide changes to screen readers without visually duplicating the heading */}
+      <p aria-live='polite' className='sr-only'>
+        Slide {active + 1} of {heroSlides.length}: {heroSlides[active].headline.join(' ')}
+      </p>
+
       {/* Content */}
-      <div className='relative z-10 mx-auto flex min-h-[720px] max-w-wrap items-center px-6 max-[860px]:min-h-[840px] max-[860px]:px-5'>
+      <div className='relative z-10 mx-auto flex min-h-dvh max-w-wrap items-center px-6 max-[860px]:px-5'>
         <div key={active} className='reveal in max-w-[620px]'>
           <span className='mb-4 block font-mono text-sm uppercase tracking-[.07em] text-blue-light'>
             {heroSlides[active].eyebrow}
