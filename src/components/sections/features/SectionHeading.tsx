@@ -13,8 +13,8 @@ interface SectionHeadingProps {
 export function SectionHeading({ title, subtitle }: SectionHeadingProps) {
   return (
     <div className='wrap'>
-      <Reveal className='mx-auto max-w-[760px] pt-40 text-center max-[1100px]:pt-[120px] max-[860px]:pt-[108px]'>
-        <h2 className='mb-6 font-satoshi text-[44px] font-normal leading-[1.34] tracking-[-.5px] text-t-primary max-[860px]:text-[30px] max-[430px]:text-[26px]'>
+      <Reveal className='mx-auto max-w-[720px] text-center'>
+        <h2 className='mb-7 max-w-[963px] font-satoshi text-[44px] font-medium leading-[1.34] tracking-[-.5px] text-t-primary max-[860px]:text-[30px] max-[430px]:text-[26px]'>
           {title}
         </h2>
         {subtitle ? (
