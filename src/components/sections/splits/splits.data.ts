@@ -8,6 +8,8 @@ export interface SplitItem {
   image: { src: string; alt: string; width: number; height: number };
   /** Extra top padding for the first split (matches `.split.split-lead`). */
   lead?: boolean;
+  /** Swaps sides — image on the left, text on the right. */
+  reversed?: boolean;
 }
 
 export const splits: SplitItem[] = [
@@ -33,6 +35,7 @@ export const splits: SplitItem[] = [
       width: 1299,
       height: 1211,
     },
+    reversed: true,
   },
   {
     eyebrow: '[03] Analyze',

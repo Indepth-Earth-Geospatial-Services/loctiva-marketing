@@ -11,10 +11,14 @@ const TILE_WINDOW = 3;
  * Testimonials section — a colored card, width-matched to the rest of the
  * page's `wrap` content column, with a sidebar of industry tiles + arrow nav
  * on the left and a large quote with bottom-right attribution on the right.
- * The tile stack shows a sliding 3-item window starting at the active
- * testimonial, with the active one rendered solid — company logos in the
- * reference design become industry tiles here since we're intentionally not
- * using invented company names.
+ * Company logos in the reference design become industry tiles here since
+ * we're intentionally not using invented company names.
+ *
+ * The tile row shows a fixed group of 3 testimonials at a time (testimonials
+ * 0-2, then 3-4-0, etc. — `windowStart` only advances once `active` crosses
+ * a group boundary). Within a group the tiles never move or resize; only
+ * the highlighted (active) tile's color changes via `transition-colors`, so
+ * the highlight visibly steps 1 → 2 → 3 before the next group swaps in.
  */
 export function Testimonials() {
   const [active, setActive] = useState(0);
@@ -22,15 +26,13 @@ export function Testimonials() {
   const length = testimonials.length;
 
   const go = useCallback(
-    (i: number) => setActive((i + length) % length),
+    (i: number) => setActive(((i % length) + length) % length),
     [length],
   );
 
   useEffect(() => {
     if (paused) return;
-    const reduce = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
 
     const id = setInterval(() => go(active + 1), AUTOPLAY_MS);
@@ -38,9 +40,11 @@ export function Testimonials() {
   }, [active, paused, go]);
 
   const item = testimonials[active];
+  const visibleCount = Math.min(TILE_WINDOW, length);
+  const windowStart = Math.floor(active / visibleCount) * visibleCount;
   const tileWindow = Array.from(
-    { length: Math.min(TILE_WINDOW, length) },
-    (_, i) => (active + i) % length,
+    { length: visibleCount },
+    (_, i) => (windowStart + i) % length,
   );
 
   return (
@@ -58,13 +62,13 @@ export function Testimonials() {
           }}
         >
           <div className='grid gap-10 md:grid-cols-[220px_1fr] md:gap-16'>
-            {/* Sidebar — label, tile stack, arrow nav */}
+            {/* Sidebar — label, tile row, arrow nav */}
             <div className='flex flex-col'>
               <p className='font-mono text-xs uppercase leading-[1.4] tracking-[.07em] text-t-primary/70'>
                 {testimonialsEyebrow}
               </p>
 
-              <div className='mt-6 flex gap-3 md:flex-col md:gap-3'>
+              <div className='mt-6 flex gap-3 md:flex-col'>
                 {tileWindow.map((tileIndex) => {
                   const tile = testimonials[tileIndex];
                   const isActive = tileIndex === active;
@@ -76,7 +80,7 @@ export function Testimonials() {
                       aria-current={isActive}
                       aria-label={`Show testimonial for ${tile.industry}`}
                       className={cn(
-                        'flex h-20 w-50 flex-none items-center justify-center rounded-xl px-2 text-center font-geist text-[11px] font-semibold leading-tight transition-colors duration-300 md:h-24 md:w-full',
+                        'flex h-20 flex-1 items-center justify-center rounded-xl px-2 text-center font-geist text-[11px] font-semibold leading-tight transition-colors duration-300 md:h-24 md:w-full md:flex-none',
                         isActive
                           ? 'bg-btn text-btn-fg'
                           : 'border border-t-primary/25 bg-transparent text-t-primary/80 hover:border-t-primary/50',
