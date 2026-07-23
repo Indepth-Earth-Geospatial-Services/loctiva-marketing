@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/components/sections/features/SectionHeading";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FeatureCard } from "./FeatureCard";
 import { featureCards, featuresHeading } from "./features.data";
 

@@ -22,7 +22,9 @@ export function Impact() {
       <div className='wrap'>
         <div className='relative flex min-h-[620px] items-center max-[860px]:min-h-0 max-[860px]:flex-col max-[860px]:items-start'>
           <Reveal className='relative z-[2] max-w-[563px]'>
-            <Eyebrow className='mb-[26px]'>{impactContent.eyebrow}</Eyebrow>
+            <Eyebrow className='mb-[26px]' variant='blue'>
+              {impactContent.eyebrow}
+            </Eyebrow>
 
             <h2 className='mb-6 font-geist text-[44px] font-semibold leading-[1.09] tracking-[-.44px] text-t-bright max-[860px]:text-[30px] max-[430px]:text-[26px]'>
               {impactContent.title.map((line, i) => (

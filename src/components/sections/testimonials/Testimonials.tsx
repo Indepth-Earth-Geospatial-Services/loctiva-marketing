@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { cn } from '@/lib/cn';
-import { testimonials, testimonialsEyebrow } from './testimonials.data';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { testimonials, testimonialsEyebrow, testimonialsHeading } from './testimonials.data';
 
 const AUTOPLAY_MS = 6000;
 const TILE_WINDOW = 3;
@@ -32,7 +33,9 @@ export function Testimonials() {
 
   useEffect(() => {
     if (paused) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
     if (reduce) return;
 
     const id = setInterval(() => go(active + 1), AUTOPLAY_MS);
@@ -48,10 +51,15 @@ export function Testimonials() {
   );
 
   return (
-    <section className='pt-[120px] max-[1100px]:pt-20 max-[860px]:pt-14'>
-      <div className='wrap'>
+    <section className='flex min-h-dvh flex-col justify-center pt-[120px] pb-[120px] max-[1100px]:pt-20 max-[1100px]:pb-20 max-[860px]:pt-14 max-[860px]:pb-14'>
+      <SectionHeading
+        title={testimonialsHeading.title}
+        subtitle={testimonialsHeading.subtitle}
+      />
+
+      <div className='wrap mt-14 max-[860px]:mt-10'>
         <div
-          className='relative rounded-[28px] bg-testimonial px-8 py-12 md:px-14 md:py-16'
+          className='relative rounded-[28px] bg-slate-500/50 px-8 py-12 md:px-14 md:py-16'
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}

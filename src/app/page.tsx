@@ -13,8 +13,8 @@ import { Footer } from '@/components/layout/Footer';
 
 /**
  * Landing page — full conversion of the original static site into
- * component-based sections: navbar, hero, features, delivers, dashboard,
- * platform, industries, splits, impact, trust, testimonials, and footer.
+ * component-based sections: navbar, hero, features, dashboard, industries,
+ * splits, testimonials, delivers, platform, impact, trust, and footer.
  */
 export default function Home() {
   return (
@@ -23,12 +23,12 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
+        <Dashboard />
         <Industries />
         <Splits />
         <Testimonials />
-        <Delivers />
-        <Dashboard />
-        <Platform />
+        {/* <Delivers /> */}
+        {/* <Platform /> */}
         <Impact />
         {/* <Trust /> */}
       </main>
