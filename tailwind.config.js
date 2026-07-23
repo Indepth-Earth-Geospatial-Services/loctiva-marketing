@@ -12,6 +12,8 @@ module.exports = {
       colors: {
         bg: 'var(--color-bg)',
         panel: 'var(--color-panel)',
+        'panel-2': 'var(--color-panel-2)',
+        testimonial: 'var(--color-testimonial)',
         border: 'var(--color-border)',
         blue: {
           DEFAULT: 'var(--color-blue)',

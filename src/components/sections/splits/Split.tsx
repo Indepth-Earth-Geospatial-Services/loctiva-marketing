@@ -14,6 +14,9 @@ interface SplitProps extends SplitItem {
 /** Vertical sliver (px) of each card left peeking above the next one that pins over it. */
 const STACK_PEEK = 24;
 
+/** Background per card — stays white for the first, then eases into soft neutrals so each card reads as a distinct layer without breaking from the page's white base. */
+const CARD_BG = ['bg-bg', 'bg-panel', 'bg-panel-2'];
+
 /**
  * Reusable text + image section — port of `.split`. Two flex columns on
  * desktop (391px text / media capped at 480px), stacked on tablet and below.
@@ -38,7 +41,8 @@ export function Split({
   return (
     <section
       className={cn(
-        'sticky min-h-screen flex items-center bg-bg',
+        'sticky min-h-screen flex items-center',
+        CARD_BG[index] ?? 'bg-bg',
         'max-[860px]:static max-[860px]:min-h-0',
         'pt-[85px] max-[1100px]:pt-[90px] max-[860px]:pt-[72px]',
         lead && 'pt-[145px] max-[1100px]:pt-[110px] max-[860px]:pt-20',
@@ -79,6 +83,7 @@ export function Split({
           <Reveal
             className={cn(
               'min-w-0 max-w-[480px] flex-1',
+              'min-[1440px]:max-w-[640px]',
               'max-[1100px]:w-full max-[1100px]:max-w-none',
               reversed && 'order-1 max-[1100px]:order-none',
             )}
@@ -88,7 +93,7 @@ export function Split({
               alt={image.alt}
               width={image.width}
               height={image.height}
-              sizes='(max-width: 1100px) 100vw, 580px'
+              sizes='(max-width: 1100px) 100vw, (min-width: 1440px) 700px, 580px'
               className='h-auto w-full'
             />
           </Reveal>

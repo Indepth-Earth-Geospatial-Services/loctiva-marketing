@@ -2,7 +2,7 @@
 
 export const trustBanner = {
   title: 'Built for trust at scale',
-  body: 'Dovetail’s Compliance & Security framework covers SOC 2 Type II, ISO 27001, HIPAA, GDPR, and more—plus enterprise access via MCP Server.',
+  body: 'Loctiva’s Compliance & Security framework covers SOC 2 Type II, ISO 27001, HIPAA, GDPR, and more—plus enterprise access via MCP Server.',
   badges: {
     src: '/landing/trust-badges.png',
     alt: 'Compliance badges: SOC 2, HIPAA, ISO 27001, ISO 42001, GDPR & CCPA, MCP Server',
