@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "solid" | "ghost";
+type ButtonVariant = "solid" | "ghost" | "outline";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -15,9 +15,12 @@ const base =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue/60";
 
 const variants: Record<ButtonVariant, string> = {
-  solid: "bg-btn text-btn-fg hover:bg-btn-hover",
+  solid: "bg-cta text-white hover:bg-cta-hover",
   // The `.btn-ghost` component class (globals.css) draws the blue corner brackets.
+  // For light backgrounds (Delivers, Impact, ...).
   ghost: "btn-ghost bg-transparent border-border text-t-primary hover:bg-blue/[.06]",
+  // For dark backgrounds (Hero) — a plain light border/text, no corner brackets.
+  outline: "bg-transparent border-white/30 text-white hover:bg-white/10",
 };
 
 /**

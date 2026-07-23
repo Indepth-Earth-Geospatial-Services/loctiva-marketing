@@ -112,7 +112,7 @@ export function Industries() {
   const stageHeight = cfg.cardH + 44;
 
   return (
-    <section className='bg-panel py-24 max-[1100px]:py-20 max-[860px]:py-14'>
+    <section className='py-24 max-[1100px]:py-20 max-[860px]:py-14'>
       <div className='wrap'>
         <div className='mx-auto max-w-[720px] text-center'>
           <h2 className='mb-7 max-w-[963px] font-satoshi text-[44px] font-medium leading-[1.34] tracking-[-.5px] text-t-primary max-[860px]:text-[30px] max-[430px]:text-[26px]'>

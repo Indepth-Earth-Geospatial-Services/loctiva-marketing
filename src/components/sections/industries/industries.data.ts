@@ -13,42 +13,39 @@ export interface IndustryItem {
 }
 
 /**
- * Images reuse existing platform screenshots/photos (no stock imagery),
- * each a reasonable visual fit for the industry it represents.
+ * Dedicated photos per industry (Unsplash, free-to-use license), downloaded
+ * locally rather than hotlinked. Chosen for a real thematic fit rather than
+ * reusing generic screenshots from elsewhere on the site.
  */
 export const industries: IndustryItem[] = [
   {
     id: 'oil-gas',
     title: 'Oil & Gas',
-    image: { src: '/landing/hero/pipeline.jpg', width: 2400, height: 1600 },
+    image: { src: '/landing/industries/oil-gas.jpg', width: 1200, height: 800 },
   },
   {
     id: 'defence',
     title: 'Defence & Security',
-    image: {
-      src: '/landing/hero/control-room.jpeg',
-      width: 1536,
-      height: 1024,
-    },
+    image: { src: '/landing/industries/defence.jpg', width: 1200, height: 900 },
   },
   {
     id: 'power',
     title: 'Power Sector',
-    image: { src: '/landing/hero/aerial-city.jpg', width: 2400, height: 1635 },
+    image: { src: '/landing/industries/power.jpg', width: 1200, height: 899 },
   },
   {
     id: 'telecom',
     title: 'Telecom Carriers',
-    image: { src: '/landing/dashboard.png', width: 2480, height: 1950 },
+    image: { src: '/landing/industries/telecom.jpg', width: 1200, height: 800 },
   },
   {
     id: 'ports',
     title: 'Ports & Coastal Authorities',
-    image: { src: '/landing/map.png', width: 1180, height: 1080 },
+    image: { src: '/landing/industries/ports.jpg', width: 1200, height: 800 },
   },
   {
     id: 'infrastructure',
     title: 'Critical Infrastructure',
-    image: { src: '/landing/chart-analysis.png', width: 1920, height: 1807 },
+    image: { src: '/landing/industries/infrastructure.jpg', width: 1200, height: 800 },
   },
 ];

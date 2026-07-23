@@ -23,6 +23,8 @@ module.exports = {
         btn: 'var(--color-btn)',
         'btn-hover': 'var(--color-btn-hover)',
         'btn-fg': 'var(--color-btn-fg)',
+        cta: 'var(--color-cta)',
+        'cta-hover': 'var(--color-cta-hover)',
         't-primary': 'var(--color-t-primary)',
         't-bright': 'var(--color-t-bright)',
         't-muted': 'var(--color-t-muted)',

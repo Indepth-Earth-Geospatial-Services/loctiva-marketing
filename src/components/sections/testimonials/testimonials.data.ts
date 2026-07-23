@@ -8,6 +8,12 @@
  * become available.
  */
 
+export const testimonialsHeading = {
+  title: 'What Operators Are Saying',
+  subtitle:
+    'Real feedback from teams using Loctiva to monitor, detect, and respond in real time.',
+} as const;
+
 export const testimonialsEyebrow = "Don't Just Take Our Word For It";
 
 export interface TestimonialItem {
