@@ -99,7 +99,7 @@ export function Hero() {
           <div className='flex flex-wrap gap-4 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-3.5'>
             <a
               href='#'
-              className='inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 font-mono text-base font-medium text-[#05070d] transition-transform active:scale-[0.98]'
+              className='inline-flex items-center justify-center rounded-full bg-cta px-8 py-3.5 font-mono text-base font-medium text-white transition-[background-color,transform] duration-200 hover:bg-cta-hover active:scale-[0.98]'
             >
               {heroCtas.primaryCta}
             </a>
