@@ -28,6 +28,7 @@ Thumbs.db
 *.swp
 .vscode/
 .vscode/*.code-snippets
+.claude
 
 # Coverage
 coverage/

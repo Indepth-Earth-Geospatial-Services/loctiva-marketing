@@ -7,12 +7,13 @@ import { Platform } from '@/components/sections/platform';
 import { Splits } from '@/components/sections/splits';
 import { Impact } from '@/components/sections/impact';
 import { Trust } from '@/components/sections/trust';
+import { Testimonials } from '@/components/sections/testimonials';
 import { Footer } from '@/components/layout/Footer';
 
 /**
  * Landing page — full conversion of the original static site into
  * component-based sections: navbar, hero, features, delivers, dashboard,
- * platform, splits, impact, trust, and footer.
+ * platform, splits, impact, trust, testimonials, and footer.
  */
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <Splits />
         <Impact />
         <Trust />
+        <Testimonials />
       </main>
       <Footer />
     </>
