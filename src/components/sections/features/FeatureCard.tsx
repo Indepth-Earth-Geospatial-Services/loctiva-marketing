@@ -1,34 +1,39 @@
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import type { FeatureCardItem } from './features.data';
 
 /**
- * Single feature card — artwork beside a centered body with a CTA. Row layout
- * on desktop, stacked/centered on mobile (port of `.fcard`). Wrapped in Reveal
- * to fade up on scroll.
+ * Single feature entry — plain image + text pair, no card border/background,
+ * matching a simple editorial layout (image left, title/body/link right, a
+ * link instead of a button). Stacks vertically below 500px. Wrapped in
+ * Reveal for the same scroll fade-up used everywhere else on the site.
  */
-export function FeatureCard({ art, title, body, cta }: FeatureCardItem) {
+export function FeatureCard({ image, title, body, cta }: FeatureCardItem) {
   return (
-    <Reveal className='flex items-stretch gap-5 overflow-hidden rounded-[14px] border border-border bg-[radial-gradient(120%_120%_at_20%_30%,var(--color-card-grad-1)_0%,var(--color-card-grad-2)_60%)] px-7 py-9 min-h-[380px] max-[860px]:min-h-0 max-[860px]:flex-col max-[860px]:gap-1.5 max-[860px]:px-[22px] max-[860px]:py-7 max-[860px]:text-center'>
-      <div className='flex flex-none basis-[46%] items-center justify-center py-2 max-[860px]:basis-auto max-[860px]:p-0'>
+    <Reveal as='article' className='flex gap-6 max-[500px]:flex-col rounded-lg'>
+      <div className='relative aspect-[4/3] w-2/5 flex-none overflow-hidden max-[500px]:w-full'>
         <Image
-          src={art}
+          src={image.src}
           alt=''
-          width={300}
-          height={300}
-          className='h-auto max-h-[300px] w-auto max-w-full object-contain max-[860px]:max-h-[210px]'
+          fill
+          sizes='(max-width: 500px) 100vw, (max-width: 1100px) 45vw, 22vw'
+          className='object-cover'
         />
       </div>
 
-      <div className='mx-auto flex-1 max-w-[280px] self-center text-center max-[860px]:max-w-[340px]'>
-        <h3 className='mb-2.5 font-geist text-[17px] font-medium text-t-bright'>
+      <div className='flex min-w-0 flex-1 flex-col justify-center'>
+        <h3 className='mb-2 font-geist text-base font-medium text-t-bright'>
           {title}
         </h3>
-        <p className='mb-4 font-inter text-[13.5px] leading-[1.5] text-t-faint'>
+        <p className='mb-3 font-inter text-[13px] leading-[1.55] text-t-faint'>
           {body}
         </p>
-        <Button className='px-[26px] py-2.5 text-sm'>{cta}</Button>
+        <a
+          href='#'
+          className="inline-flex w-fit items-center gap-2 font-inter text-[14px] font-medium text-t-bright after:text-blue-light after:content-['→']"
+        >
+          {cta}
+        </a>
       </div>
     </Reveal>
   );

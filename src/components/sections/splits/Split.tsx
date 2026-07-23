@@ -43,6 +43,8 @@ export function Split({
       className={cn(
         'sticky min-h-screen flex items-center',
         CARD_BG[index] ?? 'bg-bg',
+        (index === 1 || index === 2) &&
+          'rounded-t-3xl max-[860px]:rounded-t-none',
         'max-[860px]:static max-[860px]:min-h-0',
         'pt-[85px] max-[1100px]:pt-[90px] max-[860px]:pt-[72px]',
         lead && 'pt-[145px] max-[1100px]:pt-[110px] max-[860px]:pt-20',
