@@ -7,17 +7,19 @@ import type { FeatureCardItem } from './features.data';
  * matching a simple editorial layout (image left, title/body/link right, a
  * link instead of a button). Stacks vertically below 500px. Wrapped in
  * Reveal for the same scroll fade-up used everywhere else on the site.
+ * `group` + `overflow-hidden` on the image wrapper lets the image itself
+ * scale up on hover without spilling outside its box or shifting layout.
  */
 export function FeatureCard({ image, title, body, cta }: FeatureCardItem) {
   return (
-    <Reveal as='article' className='flex gap-6 max-[500px]:flex-col rounded-lg'>
+    <Reveal as='article' className='group flex gap-6 max-[500px]:flex-col rounded-lg'>
       <div className='relative aspect-[4/3] w-2/5 flex-none overflow-hidden max-[500px]:w-full'>
         <Image
           src={image.src}
           alt=''
           fill
           sizes='(max-width: 500px) 100vw, (max-width: 1100px) 45vw, 22vw'
-          className='object-cover'
+          className='object-cover transition-transform duration-500 ease-out group-hover:scale-110'
         />
       </div>
 
