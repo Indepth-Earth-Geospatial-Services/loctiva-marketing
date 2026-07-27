@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Reveal } from '@/components/ui/Reveal';
 import { industries, industriesHeading } from './industries.data';
 
 const AUTOPLAY_MS = 4000;
@@ -15,11 +16,21 @@ interface TierConfig {
   gap: number;
   /** How many slides to show on each side of the active (center) one. */
   radius: number;
+  /** Extra width reserved at each end of the stage for the arrow buttons. */
+  buffer: number;
 }
 
+/**
+ * Card sizes here must keep the *computed* stage width (see `stageWidth`
+ * below) within real phone viewport widths — the stage's own `maxWidth:
+ * '100%'` only clamps the stage element itself, not the raw pixel offsets
+ * the cards inside it are positioned with, so an oversized mobile config
+ * here makes cards overflow past the clamped stage instead of shrinking
+ * with it. Mobile is tuned to fit comfortably from ~360px viewports up.
+ */
 const TIER_CONFIG: Record<Tier, TierConfig> = {
-  desktop: { cardW: 340, cardH: 380, gap: 28, radius: 2 },
-  mobile: { cardW: 190, cardH: 133, gap: 16, radius: 1 },
+  desktop: { cardW: 340, cardH: 380, gap: 28, radius: 2, buffer: 96 },
+  mobile: { cardW: 120, cardH: 140, gap: 10, radius: 1, buffer: 48 },
 };
 
 /**
@@ -108,13 +119,13 @@ export function Industries() {
 
   const edgeHalf = (cfg.cardW * (SCALE_BY_ABS_OFFSET[cfg.radius] ?? 0.4)) / 2;
   const edgeX = slideOffsetX(cfg.radius, cfg.cardW, cfg.gap);
-  const stageWidth = 2 * (edgeX + edgeHalf) + 96;
+  const stageWidth = 2 * (edgeX + edgeHalf) + cfg.buffer;
   const stageHeight = cfg.cardH + 44;
 
   return (
     <section className='py-24 max-[1100px]:py-20 max-[860px]:py-14'>
       <div className='wrap'>
-        <div className='mx-auto max-w-[720px] text-center'>
+        <Reveal className='mx-auto max-w-[720px] text-center'>
           <h2 className='mb-7 max-w-[963px] font-satoshi text-[44px] font-medium leading-[1.34] tracking-[-.5px] text-t-primary max-[860px]:text-[30px] max-[430px]:text-[26px]'>
             {industriesHeading.title.map((line, i) => (
               <span key={i}>
@@ -126,7 +137,7 @@ export function Industries() {
           <p className='mx-auto max-w-[622px] font-geist text-lg leading-[1.22] text-t-primary max-[860px]:text-base'>
             {industriesHeading.subtitle}
           </p>
-        </div>
+        </Reveal>
 
         <div
           className='relative mt-16 max-[640px]:mt-12'
@@ -168,7 +179,7 @@ export function Industries() {
                     zIndex: 10 - absOffset,
                     pointerEvents: inRange ? 'auto' : 'none',
                   }}
-                  className='absolute left-1/2 top-1/2 flex flex-col items-center gap-3 transition-[transform,opacity] duration-500 ease-out'
+                  className='group absolute left-1/2 top-1/2 flex flex-col items-center gap-3 transition-[transform,opacity] duration-500 ease-out'
                 >
                   <span
                     className='relative overflow-hidden rounded-2xl'
@@ -178,11 +189,11 @@ export function Industries() {
                       src={industry.image.src}
                       alt=''
                       fill
-                      sizes='280px'
-                      className='object-cover'
+                      sizes='(max-width: 860px) 120px, 340px'
+                      className='object-cover transition-transform duration-500 ease-out group-hover:scale-110'
                     />
                   </span>
-                  <span className='whitespace-nowrap font-geist text-base font-medium text-t-primary'>
+                  <span className='whitespace-nowrap font-geist text-base font-medium text-t-primary max-[860px]:text-xs'>
                     {industry.title}
                   </span>
                 </button>
@@ -193,7 +204,7 @@ export function Industries() {
               type='button'
               aria-label='Previous industry'
               onClick={() => go(active - 1)}
-              className='absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg/80 text-t-muted backdrop-blur-sm transition-colors hover:border-blue/40 hover:text-blue'
+              className='absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-bg/80 text-t-muted  transition-colors hover:border-blue/40 hover:text-blue'
             >
               <svg
                 viewBox='0 0 24 24'
@@ -213,7 +224,7 @@ export function Industries() {
               type='button'
               aria-label='Next industry'
               onClick={() => go(active + 1)}
-              className='absolute right-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg/80 text-t-muted backdrop-blur-sm transition-colors hover:border-blue/40 hover:text-blue'
+              className='absolute right-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-bg/80 text-t-muted transition-colors hover:border-blue/40 hover:text-blue'
             >
               <svg
                 viewBox='0 0 24 24'

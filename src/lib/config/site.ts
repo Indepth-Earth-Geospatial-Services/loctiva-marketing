@@ -13,10 +13,12 @@ export const siteConfig = {
   // The product app lives on a separate domain/project now — defaults to
   // production, override locally via NEXT_PUBLIC_COMMAND_APP_URL for testing
   // against a local command-app dev server (e.g. http://localhost:3001).
-  commandAppUrl: process.env.NEXT_PUBLIC_COMMAND_APP_URL ?? 'https://command.loctiva.com',
+  commandAppUrl:
+    process.env.NEXT_PUBLIC_COMMAND_APP_URL ?? 'https://command.loctiva.com',
 } as const;
 
 export const navLinks = [
+  { label: 'Home', href: '/' },
   { label: 'Product', href: '/#platform' },
   { label: 'Solutions', href: '/#delivers' },
   { label: 'Pricing', href: '/pricing' },
