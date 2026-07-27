@@ -70,8 +70,8 @@ export function Testimonials() {
           }}
         >
           <div className='grid gap-10 md:grid-cols-[220px_1fr] md:gap-16'>
-            {/* Sidebar — label, tile row, arrow nav */}
-            <div className='flex flex-col'>
+            {/* Sidebar — label, tile row, arrow nav. Below md, shown after the quote. */}
+            <div className='order-2 flex flex-col md:order-none'>
               <p className='font-mono text-xs uppercase leading-[1.4] tracking-[.07em] text-t-primary/70'>
                 {testimonialsEyebrow}
               </p>
@@ -100,7 +100,7 @@ export function Testimonials() {
                 })}
               </div>
 
-              <div className='mt-6 flex gap-3'>
+              <div className='mt-6 hidden gap-3 md:flex'>
                 <button
                   type='button'
                   aria-label='Previous testimonial'
@@ -144,8 +144,8 @@ export function Testimonials() {
               </div>
             </div>
 
-            {/* Quote + attribution */}
-            <div className='flex min-h-[260px] flex-col justify-between max-[860px]:min-h-0'>
+            {/* Quote + attribution — shown first on mobile, ahead of the sidebar. */}
+            <div className='order-1 flex min-h-[260px] flex-col justify-between max-[860px]:min-h-0 md:order-none'>
               <div key={item.id} className='reveal in'>
                 <blockquote className='font-satoshi text-[28px] font-medium leading-[1.35] tracking-[-.3px] text-t-primary max-[860px]:text-2xl'>
                   &ldquo;{item.quote}&rdquo;
