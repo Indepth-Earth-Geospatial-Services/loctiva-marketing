@@ -1,7 +1,7 @@
 // components/layout/Navbar.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../ui/Button';
@@ -10,26 +10,43 @@ import { cn } from '@/lib/cn';
 
 interface NavbarProps {
   /**
-   * 'dark' (default) sits over a dark hero section, white text.
-   * 'light' is for white-background pages (Pricing, Product) — dark text.
+   * 'dark' (default) sits over the Hero's dark photo, white text — starts
+   * fully transparent (matching the original hero-overlay look, and Hero's
+   * own top scrim gradient which was built assuming a transparent navbar
+   * over it) and only fades in a solid blurred background once scrolled
+   * past the hero, so it stays legible over the light sections below.
+   * 'light' is for pages with no hero (Pricing, Product) — dark text,
+   * solid background from the start since the page is white top to bottom.
    */
   variant?: 'dark' | 'light';
 }
 
-/**
- * Site header — now sticky on scroll.
- */
+/** Site header — sticky on every page; the dark variant's background is scroll-aware. */
 export function Navbar({ variant = 'dark' }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isDark = variant === 'dark';
+
+  useEffect(() => {
+    if (!isDark) return;
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isDark]);
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-colors duration-200',
+        'inset-x-0 top-0 z-50 w-full transition-colors duration-300',
+        // `fixed` (not `sticky`) for the dark variant — it must stay out of
+        // normal document flow so it overlaps the Hero photo instead of
+        // pushing it down and exposing the plain white body background in
+        // the space it would otherwise occupy.
+        isDark ? 'fixed' : 'sticky',
         isDark
-          ? 'bg-black/80 backdrop-blur-md text-white'
-          : 'border-b border-border bg-white/90 backdrop-blur-md text-t-primary',
+          ? cn('text-white', scrolled && 'bg-black/80 backdrop-blur-md')
+          : 'border-b border-border bg-bg/90 backdrop-blur-md text-t-primary',
       )}
     >
       <nav className='mx-auto flex max-w-wrap items-center gap-6 px-6 py-4 max-[860px]:px-5 max-[860px]:pb-[18px] max-[860px]:pt-9'>

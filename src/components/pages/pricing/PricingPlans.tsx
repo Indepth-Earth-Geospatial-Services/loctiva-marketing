@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
@@ -80,12 +81,14 @@ export function PricingPlans() {
                 ))}
               </ul>
 
-              <Button
-                variant={tier.recommended ? 'solid' : 'ghost'}
-                className='w-full justify-center'
-              >
-                {tier.cta}
-              </Button>
+              <Link href='/contact'>
+                <Button
+                  variant={tier.recommended ? 'solid' : 'ghost'}
+                  className='w-full justify-center'
+                >
+                  {tier.cta}
+                </Button>
+              </Link>
             </Reveal>
           ))}
         </div>
