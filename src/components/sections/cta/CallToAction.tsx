@@ -1,14 +1,12 @@
-// components/pages/pricing/CallToAction.tsx
+// components/sections/cta/CallToAction.tsx
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import { siteConfig } from '@/lib/config/site';
 
 /**
- * Closing CTA banner for the pricing page. No client-side state, so this
- * stays a server component. Uses the site's own design tokens (`panel`,
- * `t-bright`, `blue`) rather than raw Tailwind palette colors, so it stays
- * in step with the rest of the site's calibrated light theme.
+ * Generic closing CTA banner — reused across pages (Pricing, Product, ...).
+ * No client-side state, so this stays a server component.
  */
 export function CallToAction() {
   return (
