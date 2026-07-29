@@ -10,7 +10,7 @@ import { copyright, footerBrand, footerColumns } from './footer.data';
  */
 export function Footer() {
   return (
-    <footer className='mt-[190px] border-t border-border pb-10 pt-[60px] max-[1100px]:mt-[120px] max-[860px]:mt-20'>
+    <footer className='border-t border-border pb-10 pt-[60px] max-[1100px]:mt-[120px] max-[860px]:mt-20'>
       <div className='wrap'>
         <div className='grid grid-cols-[1.5fr_1.4fr_1fr_1fr] gap-10 max-[1100px]:grid-cols-2 max-[860px]:grid-cols-1 max-[860px]:gap-9'>
           {/* Brand */}
