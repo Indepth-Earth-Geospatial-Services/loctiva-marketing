@@ -35,7 +35,7 @@ export function ProductHero() {
         />
       )}
 
-      <div className='absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/45 to-[#05070d]/15' />
+      <div className='absolute inset-0 bg-gradient-to-t from-[#05070d] via-[#05070d]/60 to-[#05070d]/30' />
       <div className='absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#05070d]/80 to-transparent' />
 
       <div className='relative z-10 mx-auto max-w-[720px] px-6 text-center'>

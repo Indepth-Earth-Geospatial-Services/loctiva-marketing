@@ -1,2 +1,9 @@
 export { ProductHero } from './ProductHero';
+export { ProductProblem } from './ProductProblem';
+export { LiveCommandView } from './LiveCommandView';
+export { ProductAIDetection } from './ProductAIDetection';
+export { PrecisionMapping } from './PrecisionMapping';
+export { FleetDeployment } from './FleetDeployment';
+export { InstantAlerts } from './InstantAlerts';
+export { EvidenceReporting } from './EvidenceReporting';
 export { CapabilityGrid } from './CapabilityGrid';

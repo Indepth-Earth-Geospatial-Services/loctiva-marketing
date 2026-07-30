@@ -110,6 +110,29 @@
   transform: none;
 }
 
+/* Sweeping scan line over the AI-detection demo image. `top` is relative to
+   the containing block (not the element itself, unlike translateY), so this
+   sweeps the full height of whatever container it's absolutely positioned in. */
+@keyframes scan {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+.scan-line {
+  animation: scan 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -118,6 +141,10 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .scan-line {
+    animation: none;
+    opacity: 0;
   }
 }
 
