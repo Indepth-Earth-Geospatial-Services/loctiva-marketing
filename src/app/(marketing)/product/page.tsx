@@ -2,7 +2,17 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Platform } from '@/components/sections/platform';
 import { CallToAction } from '@/components/sections/cta';
-import { CapabilityGrid, ProductHero } from '@/components/pages/product';
+import {
+  CapabilityGrid,
+  EvidenceReporting,
+  FleetDeployment,
+  InstantAlerts,
+  LiveCommandView,
+  PrecisionMapping,
+  ProductAIDetection,
+  ProductHero,
+  ProductProblem,
+} from '@/components/pages/product';
 
 export default function ProductPage() {
   return (
@@ -10,7 +20,14 @@ export default function ProductPage() {
       <Navbar />
       <main>
         <ProductHero />
+        <ProductProblem />
         <Platform />
+        <LiveCommandView />
+        <ProductAIDetection />
+        <PrecisionMapping />
+        <FleetDeployment />
+        <InstantAlerts />
+        <EvidenceReporting />
         <CapabilityGrid />
         <CallToAction />
       </main>
