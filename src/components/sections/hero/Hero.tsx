@@ -81,20 +81,37 @@ export function Hero() {
 
       {/* Content */}
       <div className='relative z-10 mx-auto flex min-h-dvh max-w-wrap items-center px-6 max-[860px]:px-5'>
-        <div key={active} className='reveal in max-w-[620px]'>
-          <span className='mb-4 block font-mono text-sm uppercase tracking-[.07em] text-blue-light'>
-            {heroSlides[active].eyebrow}
-          </span>
+        <div className='max-w-[620px]'>
+          {/* Text crossfades on the same opacity/duration/easing as the background
+              photos above, instead of remounting per slide, so both transition together. */}
+          <div className='relative'>
+            {heroSlides.map((slide, i) => (
+              <div
+                key={slide.image.src}
+                aria-hidden={i !== active}
+                className={cn(
+                  'transition-opacity duration-700 ease-in-out',
+                  i === active
+                    ? 'relative opacity-100'
+                    : 'pointer-events-none absolute inset-0 opacity-0',
+                )}
+              >
+                <span className='mb-4 block font-mono text-sm uppercase tracking-[.07em] text-blue-light'>
+                  {slide.eyebrow}
+                </span>
 
-          <h1 className='mb-[18px] text-[clamp(38px,3.4vw,54px)] font-bold leading-[1.18] tracking-[-.5px] text-white max-[860px]:text-[32px]'>
-            {heroSlides[active].headline[0]}
-            <br />
-            {heroSlides[active].headline[1]}
-          </h1>
+                <h1 className='mb-[18px] text-[clamp(38px,3.4vw,54px)] font-bold leading-[1.18] tracking-[-.5px] text-white max-[860px]:text-[32px]'>
+                  {slide.headline[0]}
+                  <br />
+                  {slide.headline[1]}
+                </h1>
 
-          <p className='mb-9 max-w-[540px] font-inter text-lg leading-[1.5] text-white/80 max-[860px]:text-base'>
-            {heroSlides[active].subhead}
-          </p>
+                <p className='mb-9 max-w-[540px] font-inter text-lg leading-[1.5] text-white/80 max-[860px]:text-base'>
+                  {slide.subhead}
+                </p>
+              </div>
+            ))}
+          </div>
 
           <div className='flex flex-wrap gap-4 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-3.5'>
             <a
